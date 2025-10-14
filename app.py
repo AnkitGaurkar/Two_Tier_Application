@@ -8,12 +8,12 @@ app = Flask(__name__)
 app.config['MYSQL_HOST'] = os.environ.get('MYSQL_HOST', 'localhost')
 app.config['MYSQL_USER'] = os.environ.get('MYSQL_USER', 'default_user')
 app.config['MYSQL_PASSWORD'] = os.environ.get('MYSQL_PASSWORD', 'default_password')
-app.config['MYSQL_DB'] = os.environ.get('MYSQL_DB', 'default_db')
+app.config['MYSQL_DB'] = os.environ.get('MYSQL_DATABASE', 'ankit_db')
 
 # Initialize MySQL
 mysql = MySQL(app)
 
-def init_db():
+def ankit_db():
     with app.app_context():
         cur = mysql.connection.cursor()
         cur.execute('''
@@ -43,6 +43,6 @@ def submit():
     return jsonify({'message': new_message})
 
 if __name__ == '__main__':
-    init_db()
+    ankit_db()
     app.run(host='0.0.0.0', port=5000, debug=True)
 
