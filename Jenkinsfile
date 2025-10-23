@@ -37,4 +37,22 @@ pipeline {
             }
         }
     }
-}
+    post{
+        success{
+            script{
+                emailext from: 'ankitgaurkar8@gmail.com',
+                to: 'ankitgaurkar8@gmail.com,rushikeshtole19@gmail.com',
+                    body: 'Build Successfull for CICD Pipeline',
+                    subject: "Build for cicd pipeline"
+            }
+        }
+        failure{
+            script{
+                emailext from: "ankitgaurkar8@gmail.com",
+                    to: "ankitgaurkar8@gmail.com,rushikeshtole19@gmail.com",
+                    body: "Bad!! Build failed of cicd pipeline",
+                    subject: "Build Faild Cicd Pipeline"
+            }
+        }
+    }
+}    
