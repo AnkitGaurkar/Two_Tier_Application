@@ -30,7 +30,7 @@ pipeline {
         {
             steps{
                 script{
-                    docker_push("DockerHubCredID", "Two_tier_Flask_App")
+                    docker_push("DockerHubCredID", "two-tier-flask-app")
             }
             }
         }
