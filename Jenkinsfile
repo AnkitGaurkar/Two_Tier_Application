@@ -1,15 +1,19 @@
+@Library("shared") _
 pipeline {
     agent any;
-
     stages {
-        stage("Code clone") {
-            steps {
-                git url: "https://github.com/AnkitGaurkar/Two_Tier_Application.git", branch: "master"
+        stage("Code Clone"){
+            steps{
+                script{
+                    clone("https://github.com/AnkitGaurkar/Two_Tier_Application.git", "master")
+                }
             }
         }
-        stage("Trivy File System Scann"){
-            steps {
-                sh "trivy fs . -o results.json"
+        stage("Trivy File system scann"){
+            steps{
+                script{
+                    trivy_fs()
+                }
             }
         }
         stage("Build"){
